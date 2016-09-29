@@ -40,6 +40,8 @@ stage
 
 The profiles available come from your AWS credentials file (`~/.aws/credentials`). Profile switching is very rudimentary and is just a shortcut for implicitly passing the `--profile <name>` option. If you need more robust AWS profile management, check out the [asp] plugin by [@mgoodness](https://github.com/mgoodness).
 
+Your current profile is saved between shell sessions.
+
 
 ## License
 
