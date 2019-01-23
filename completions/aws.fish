@@ -12,7 +12,7 @@ function __aws_complete
 end
 
 function __aws_complete_profile
-  command sed -n -e 's/^\[\(.*\)\]/\1/p' "$HOME/.aws/credentials"
+  command sed -n "s/^\[\(profile[[:space:]]*\)*\(.*\)\]/\2/p" "$HOME/.aws/config" "$HOME/.aws/credentials" | sort | uniq
 end
 
 complete --command aws --no-files --arguments '(__aws_complete)'
