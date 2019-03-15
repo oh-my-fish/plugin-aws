@@ -11,10 +11,6 @@ function __aws_complete
   end
 end
 
-function __aws_complete_profile
-  command sed -n -e 's/^\[\(.*\)\]/\1/p' "$HOME/.aws/credentials"
-end
-
 complete --command aws --no-files --arguments '(__aws_complete)'
 complete --command aws --no-files --condition '__aws_complete_root' --arguments profile -d 'Get or set current profile'
-complete --command aws --no-files --condition '__fish_seen_subcommand_from profile' --arguments '(__aws_complete_profile)'
+complete --command aws --no-files --condition '__fish_seen_subcommand_from profile' --arguments '(aws profiles)'
