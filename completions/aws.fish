@@ -1,7 +1,3 @@
-function __aws_complete_root
-  test (count (commandline -o)) = 1
-end
-
 function __aws_complete
   if set -q aws_completer_path
     set -lx COMP_SHELL fish
@@ -12,5 +8,5 @@ function __aws_complete
 end
 
 complete --command aws --no-files --arguments '(__aws_complete)'
-complete --command aws --no-files --condition '__aws_complete_root' --arguments profile -d 'Get or set current profile'
+complete --command aws --no-files --condition 'test (count (commandline -opc)) -lt 2' --arguments profile -d 'Get or set current profile'
 complete --command aws --no-files --condition '__fish_seen_subcommand_from profile' --arguments '(aws profiles)'
