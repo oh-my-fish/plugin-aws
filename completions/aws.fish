@@ -1,7 +1,11 @@
 function __aws_complete
   if set -q aws_completer_path
     set -lx COMP_SHELL fish
-    set -lx COMP_LINE (commandline)
+    set -lx COMP_LINE (commandline -opc)
+
+    if string match -q -- "-*" (commandline -opt)
+      set COMP_LINE $COMP_LINE -
+    end
 
     eval $aws_completer_path | command sed 's/ $//'
   end
