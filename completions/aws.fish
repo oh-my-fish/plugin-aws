@@ -11,10 +11,6 @@ function __aws_complete
   end
 end
 
-function __aws_complete_profile
-  command sed -n "s/^\[\(profile[[:space:]]*\)*\(.*\)\]/\2/p" "$HOME/.aws/config" "$HOME/.aws/credentials" | sort | uniq
-end
-
 complete --command aws --no-files --arguments '(__aws_complete)'
 complete --command aws --no-files --condition 'test (count (commandline -opc)) -lt 2' --arguments profile -d 'Get or set current profile'
-complete --command aws --no-files --condition '__fish_seen_subcommand_from profile' --arguments '(__aws_complete_profile)'
+complete --command aws --no-files --condition '__fish_seen_subcommand_from profile' --arguments '(aws profiles)'
